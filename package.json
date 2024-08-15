@@ -1,13 +1,12 @@
 {
   "name": "cordova-plugin-licustom",
-  "version": "3.0.1-dev",
-  "description": "Cordova Device Plugin",
+  "version": "1.0.0",
+  "description": "Cordova LiCustom Plugin",
   "types": "./types/index.d.ts",
   "cordova": {
     "id": "cordova-plugin-licustom",
     "platforms": [
       "android",
-      "electron",
       "ios",
       "browser"
     ]
@@ -16,10 +15,9 @@
   "bugs": "https://github.com/logisticinfotech/cordova-plugin-licustom/issues",
   "keywords": [
     "cordova",
-    "device",
+    "licustom",
     "ecosystem:cordova",
     "cordova-android",
-    "cordova-electron",
     "cordova-ios",
     "cordova-browser"
   ],

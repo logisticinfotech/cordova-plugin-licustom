@@ -22,62 +22,54 @@
     xmlns:rim="http://www.blackberry.com/ns/widgets"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-plugin-licustom"
-    version="3.0.1-dev">
-    <name>Device</name>
+    version="1.0.0">
+    <name>LiCustom</name>
     <description>Cordova Device Plugin</description>
     <license>Apache 2.0</license>
-    <keywords>cordova,device</keywords>
+    <keywords>cordova,licustom</keywords>
     <repo>https://github.com/logisticinfotech/cordova-plugin-licustom</repo>
     <issue>https://github.com/logisticinfotech/cordova-plugin-licustom/issues</issue>
 
     <engines>
-        <engine name="cordova-electron" version=">=3.0.0" />
         <engine name="cordova-android" version=">=7.0.0" />
     </engines>
 
-    <js-module src="www/device.js" name="device">
-        <clobbers target="device" />
+    <js-module src="www/licustom.js" name="licustom">
+        <clobbers target="licustom" />
     </js-module>
 
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="Device" >
-                <param name="android-package" value="org.apache.cordova.device.Device"/>
+            <feature name="LiCustom" >
+                <param name="android-package" value="org.apache.cordova.licustom.LiCustom"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/Device.java" target-dir="src/org/apache/cordova/device" />
+        <source-file src="src/android/LiCustom.java" target-dir="src/org/apache/cordova/licustom" />
     </platform>
 
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
-            <feature name="Device">
-                <param name="ios-package" value="CDVDevice"/>
+            <feature name="LiCustom">
+                <param name="ios-package" value="CDVLiCustom"/>
             </feature>
         </config-file>
 
-        <header-file src="src/ios/CDVDevice.h" />
-        <source-file src="src/ios/CDVDevice.m" />
-
-        <resource-file src="src/ios/CDVDevice.bundle" target="CDVDevice.bundle" />
-    </platform>
-
-    <!-- electron -->
-    <platform name="electron">
-        <framework src="src/electron" />
+        <header-file src="src/ios/CDVLiCustom.h" />
+        <source-file src="src/ios/CDVLiCustom.m" />
     </platform>
 
     <!-- browser -->
     <platform name="browser">
         <config-file target="config.xml" parent="/*">
-            <feature name="Device">
-                <param name="browser-package" value="Device" />
+            <feature name="LiCustom">
+                <param name="browser-package" value="LiCustom" />
             </feature>
         </config-file>
 
-        <js-module src="src/browser/DeviceProxy.js" name="DeviceProxy">
+        <js-module src="src/browser/LiCustomProxy.js" name="LiCustomProxy">
             <runs />
         </js-module>
     </platform>

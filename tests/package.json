@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-licustom-tests",
-  "version": "3.0.1-dev",
+  "version": "1.0.0",
   "description": "",
   "cordova": {
     "id": "cordova-plugin-licustom-tests",

@@ -16,7 +16,7 @@
        specific language governing permissions and limitations
        under the License.
 */
-package org.apache.cordova.device;
+package org.apache.cordova.licustom;
 
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.CallbackContext;
@@ -24,20 +24,16 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
+import android.util.Log;
 
-import android.provider.Settings;
+public class LiCustom extends CordovaPlugin {
 
-public class Device extends CordovaPlugin {
-
-    public static String uuid;                                // Device UUID
-
-    private static final String ANDROID_PLATFORM = "Android";
+    private static final String TAG = "LiCustomPlugin";
 
     /**
      * Constructor.
      */
-    public Device() {
+    public LiCustom() {
     }
 
     /**
@@ -49,7 +45,8 @@ public class Device extends CordovaPlugin {
      */
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
-        Device.uuid = getUuid();
+
+        Log.d(TAG, "Initializing LiCustomPlugin");
     }
 
     /**
@@ -61,17 +58,12 @@ public class Device extends CordovaPlugin {
      * @return                  True if the action was valid, false if not.
      */
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if ("getDeviceInfo".equals(action)) {
-            JSONObject r = new JSONObject();
-            r.put("uuid", Device.uuid);
-            r.put("version", this.getOSVersion());
-            r.put("platform", this.getPlatform());
-            r.put("model", this.getModel());
-            r.put("manufacturer", this.getManufacturer());
-	        r.put("isVirtual", this.isVirtual());
-            r.put("serial", this.getSerialNumber());
-            r.put("sdkVersion", this.getSDKVersion());
-            callbackContext.success(r);
+        if ("echo".equals(action)) {
+            String phrase = args.getString(0);
+
+            // Echo back the first argument
+            Log.d(TAG, phrase);
+            // callbackContext.success(r);
         }
         else {
             return false;
@@ -82,53 +74,4 @@ public class Device extends CordovaPlugin {
     //--------------------------------------------------------------------------
     // LOCAL METHODS
     //--------------------------------------------------------------------------
-
-    /**
-     * Get the OS name.
-     *
-     * @return "Android"
-     */
-    public String getPlatform() {
-        return ANDROID_PLATFORM;
-    }
-
-    /**
-     * Get the device's Universally Unique Identifier (UUID).
-     *
-     * @return android.provider.Settings.Secure.ANDROID_ID
-     */
-    public String getUuid() {
-        return Settings.Secure.getString(this.cordova.getContext().getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
-    }
-
-    public String getModel() {
-        return android.os.Build.MODEL;
-    }
-
-    public String getManufacturer() {
-        return android.os.Build.MANUFACTURER;
-    }
-
-    public String getSerialNumber() {
-        return android.os.Build.SERIAL;
-    }
-
-    /**
-     * Get the OS version.
-     *
-     * @return android.os.Build.VERSION.RELEASE
-     */
-    public String getOSVersion() {
-        return android.os.Build.VERSION.RELEASE;
-    }
-
-    public String getSDKVersion() {
-        return String.valueOf(android.os.Build.VERSION.SDK_INT);
-    }
-
-    public boolean isVirtual() {
-	return android.os.Build.FINGERPRINT.contains("generic") ||
-	    android.os.Build.PRODUCT.contains("sdk");
-    }
-
 }
