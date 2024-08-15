@@ -1,10 +1,10 @@
 {
-  "name": "cordova-plugin-device",
+  "name": "cordova-plugin-licustom",
   "version": "3.0.1-dev",
   "description": "Cordova Device Plugin",
   "types": "./types/index.d.ts",
   "cordova": {
-    "id": "cordova-plugin-device",
+    "id": "cordova-plugin-licustom",
     "platforms": [
       "android",
       "electron",
@@ -12,8 +12,8 @@
       "browser"
     ]
   },
-  "repository": "github:apache/cordova-plugin-device",
-  "bugs": "https://github.com/apache/cordova-plugin-device/issues",
+  "repository": "github:logisticinfotech/cordova-plugin-licustom",
+  "bugs": "https://github.com/logisticinfotech/cordova-plugin-licustom/issues",
   "keywords": [
     "cordova",
     "device",
@@ -29,20 +29,6 @@
   },
   "author": "Apache Software Foundation",
   "license": "Apache-2.0",
-  "engines": {
-    "cordovaDependencies": {
-      "2.1.0": {
-        "cordova-electron": ">=3.0.0"
-      },
-      "3.0.0": {
-        "cordova-electron": ">=3.0.0",
-        "cordova-android": ">=7.0.0"
-      },
-      "4.0.0": {
-        "cordova": ">100"
-      }
-    }
-  },
   "devDependencies": {
     "@cordova/eslint-config": "^3.0.0"
   }

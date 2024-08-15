@@ -1,5 +1,5 @@
-// Type definitions for cordova-plugin-device
-// Project: https://github.com/apache/cordova-plugin-device
+// Type definitions for cordova-plugin-licustom
+// Project: https://github.com/logisticinfotech/cordova-plugin-licustom
 // Definitions by: Microsoft Open Technologies Inc <http://msopentech.com>
 //                 Tim Brust <https://github.com/timbru31>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
