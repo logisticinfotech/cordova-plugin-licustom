@@ -48,8 +48,8 @@
         </config-file>
 
         <source-file src="src/android/LiCustom.java" target-dir="src/org/apache/cordova/licustom" />
-        <source-file src="src/android/AbstractMobileAccessibilityHelper.java" target-dir="src/org/apache/cordova/licustom" />
-        <source-file src="src/android/DonutMobileAccessibilityHelper.java" target-dir="src/org/apache/cordova/licustom" />
+        <source-file src="src/android/AbstractLiCustomHelper.java" target-dir="src/org/apache/cordova/licustom" />
+        <source-file src="src/android/DonutLiCustomHelper.java" target-dir="src/org/apache/cordova/licustom" />
         <!-- <asset src="www/android" target="plugins/com.phonegap.plugin.mobile-accessibility/android" /> -->
     </platform>
 
