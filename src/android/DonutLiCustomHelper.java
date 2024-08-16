@@ -24,7 +24,6 @@ package org.apache.cordova.licustom;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
-import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -35,22 +34,22 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 @TargetApi(Build.VERSION_CODES.DONUT)
-public class DonutMobileAccessibilityHelper extends AbstractMobileAccessibilityHelper {
+public class DonutLiCustomHelper extends AbstractLiCustomHelper {
 
     AccessibilityManager mAccessibilityManager;
     View mView;
 
     @Override
-    public void initialize(MobileAccessibility mobileAccessibility) {
-        mMobileAccessibility = mobileAccessibility;
+    public void initialize(LiCustom liCustom) {
+      liCustom = liCustom;
         WebView view;
         try {
-            view = (WebView) mobileAccessibility.webView;
+            view = (WebView) liCustom.webView;
             mView = view;
         } catch(ClassCastException ce) {  // cordova-android 4.0+
             try {
-                Method getView = mobileAccessibility.webView.getClass().getMethod("getView");
-                mView = (View) getView.invoke(mobileAccessibility.webView);
+                Method getView = liCustom.webView.getClass().getMethod("getView");
+                mView = (View) getView.invoke(liCustom.webView);
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
@@ -60,7 +59,7 @@ public class DonutMobileAccessibilityHelper extends AbstractMobileAccessibilityH
             }
         }
 
-        mAccessibilityManager = (AccessibilityManager) mMobileAccessibility.cordova.getActivity().getSystemService(Context.ACCESSIBILITY_SERVICE);
+        mAccessibilityManager = (AccessibilityManager) liCustom.cordova.getActivity().getSystemService(Context.ACCESSIBILITY_SERVICE);
     }
 
     @SuppressWarnings("deprecation")

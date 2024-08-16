@@ -23,10 +23,10 @@ package org.apache.cordova.licustom;
 
 import android.view.ViewParent;
 
-abstract class AbstractMobileAccessibilityHelper {
-    MobileAccessibility mMobileAccessibility;
+abstract class AbstractLiCustomHelper {
+    LiCustom liCustom;
     ViewParent mParent;
-    public abstract void initialize(MobileAccessibility mobileAccessibility);
+    public abstract void initialize(LiCustom liCustom);
     public abstract double getTextZoom();
     public abstract void setTextZoom(double textZoom);
 }

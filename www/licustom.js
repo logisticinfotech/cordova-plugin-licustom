@@ -23,7 +23,7 @@ var LiCustom = {
    * @param {function} callback A callback method to receive the asynchronous result from the native MobileAccessibility.
    */
   getTextZoom: function(callback) {
-    exec(callback, null, "MobileAccessibility", "getTextZoom", []);
+    exec(callback, null, PLUGIN_NAME, "getTextZoom", []);
   },
 
 

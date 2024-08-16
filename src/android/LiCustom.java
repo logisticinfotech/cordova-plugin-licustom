@@ -30,7 +30,7 @@ public class LiCustom extends CordovaPlugin {
 
     private static final String TAG = "LiCustomPlugin";
 
-    private AbstractMobileAccessibilityHelper mMobileAccessibilityHelper;
+    private AbstractLiCustomHelper mLiCustomHelper;
 
     /**
      * Constructor.
@@ -50,8 +50,8 @@ public class LiCustom extends CordovaPlugin {
 
         Log.d(TAG, "Initializing LiCustomPlugin");
 
-        mMobileAccessibilityHelper = new DonutMobileAccessibilityHelper();
-        mMobileAccessibilityHelper.initialize(this);
+        mLiCustomHelper = new DonutLiCustomHelper();
+        mLiCustomHelper.initialize(this);
     }
 
     /**
@@ -89,7 +89,7 @@ public class LiCustom extends CordovaPlugin {
     private void getTextZoom(final CallbackContext callbackContext) {
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
-                final double textZoom = mMobileAccessibilityHelper.getTextZoom();
+                final double textZoom = mLiCustomHelper.getTextZoom();
                 if (callbackContext != null) {
                     callbackContext.success((int) textZoom);
                 }
@@ -100,9 +100,9 @@ public class LiCustom extends CordovaPlugin {
     private void setTextZoom(final double textZoom, final CallbackContext callbackContext) {
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
-                mMobileAccessibilityHelper.setTextZoom(textZoom);
+                mLiCustomHelper.setTextZoom(textZoom);
                 if (callbackContext != null) {
-                    callbackContext.success((int) mMobileAccessibilityHelper.getTextZoom());
+                    callbackContext.success((int) mLiCustomHelper.getTextZoom());
                 }
             }
         });
@@ -111,7 +111,7 @@ public class LiCustom extends CordovaPlugin {
     public void setTextZoom(final double textZoom) {
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
-                mMobileAccessibilityHelper.setTextZoom(textZoom);
+                mLiCustomHelper.setTextZoom(textZoom);
             }
         });
     }
