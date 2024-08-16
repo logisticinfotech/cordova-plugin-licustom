@@ -21,6 +21,12 @@
 
 #import <Cordova/CDVAvailability.h>
 
+@interface CDVMobileAccessibility ()
+    // add any property overrides
+    -(double) mGetTextZoom;
+    -(void) mSetTextZoom:(double)zoom;
+@end
+
 @implementation CDVLiCustom
 
 - (void)pluginInitialize {
@@ -29,6 +35,45 @@
 - (void)echo:(CDVInvokedUrlCommand *)command {
   NSString* phrase = [command.arguments objectAtIndex:0];
   NSLog(@"%@", phrase);
+}
+
+-(double) mGetTextZoom
+{
+    double zoom = round(mFontScale * 100);
+    // NSLog(@"mGetTextZoom %f%%", zoom);
+    return zoom;
+}
+
+- (void) getTextZoom:(CDVInvokedUrlCommand *)command
+{
+    double zoom = [self mGetTextZoom];
+    [self.commandDelegate runInBackground:^{
+        CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDouble: zoom];
+        [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+    }];
+}
+
+-(void) mSetTextZoom:(double)zoom
+{
+    // NSLog(@"mSetTextZoom %f%%'", zoom);
+    mFontScale = zoom/100;
+    if (iOS7Delta)  {
+        NSString *jsString = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%f%%'", zoom];
+        [self.commandDelegate evalJs:jsString];
+    }
+}
+
+- (void) setTextZoom:(CDVInvokedUrlCommand *)command
+{
+    if (command != nil && [command.arguments count] > 0) {
+        double zoom = [[command.arguments objectAtIndex:0] doubleValue];
+        [self mSetTextZoom:zoom];
+
+        [self.commandDelegate runInBackground:^{
+            CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDouble:zoom];
+            [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+        }];
+    }
 }
 
 @end

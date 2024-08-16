@@ -23,6 +23,8 @@
 {}
 
 // The handler for the 'echo' action
-- (void)echo:(CDVInvokedUrlCommand *)command;
+- (void) echo:(CDVInvokedUrlCommand *)command;
+- (void) getTextZoom:(CDVInvokedUrlCommand*)command;
+- (void) setTextZoom:(CDVInvokedUrlCommand*)command;
 
 @end

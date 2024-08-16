@@ -41,12 +41,16 @@
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="LiCustom" >
+            <!-- <access origin="https://ssl.gstatic.com/accessibility/javascript/android/*" /> -->
+            <feature name="LiCustom">
                 <param name="android-package" value="org.apache.cordova.licustom.LiCustom"/>
             </feature>
         </config-file>
 
         <source-file src="src/android/LiCustom.java" target-dir="src/org/apache/cordova/licustom" />
+        <source-file src="src/android/AbstractMobileAccessibilityHelper.java" target-dir="src/org/apache/cordova/licustom" />
+        <source-file src="src/android/DonutMobileAccessibilityHelper.java" target-dir="src/org/apache/cordova/licustom" />
+        <!-- <asset src="www/android" target="plugins/com.phonegap.plugin.mobile-accessibility/android" /> -->
     </platform>
 
     <!-- ios -->
@@ -57,6 +61,7 @@
             </feature>
         </config-file>
 
+        <framework src="MediaAccessibility.framework" weak="true" />
         <header-file src="src/ios/CDVLiCustom.h" />
         <source-file src="src/ios/CDVLiCustom.m" />
     </platform>

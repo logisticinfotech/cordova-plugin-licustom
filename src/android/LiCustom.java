@@ -30,6 +30,8 @@ public class LiCustom extends CordovaPlugin {
 
     private static final String TAG = "LiCustomPlugin";
 
+    private AbstractMobileAccessibilityHelper mMobileAccessibilityHelper;
+
     /**
      * Constructor.
      */
@@ -47,6 +49,9 @@ public class LiCustom extends CordovaPlugin {
         super.initialize(cordova, webView);
 
         Log.d(TAG, "Initializing LiCustomPlugin");
+
+        mMobileAccessibilityHelper = new DonutMobileAccessibilityHelper();
+        mMobileAccessibilityHelper.initialize(this);
     }
 
     /**
@@ -63,9 +68,16 @@ public class LiCustom extends CordovaPlugin {
 
             // Echo back the first argument
             Log.d(TAG, phrase);
-            // callbackContext.success(r);
-        }
-        else {
+        } else if(action.equals("getTextZoom")) {
+            getTextZoom(callbackContext);
+        } else if(action.equals("setTextZoom")) {
+            if (args.length() > 0) {
+                double textZoom = args.getDouble(0);
+                if (textZoom > 0) {
+                    setTextZoom(textZoom, callbackContext);
+                }
+            }
+        } else {
             return false;
         }
         return true;
@@ -74,4 +86,33 @@ public class LiCustom extends CordovaPlugin {
     //--------------------------------------------------------------------------
     // LOCAL METHODS
     //--------------------------------------------------------------------------
+    private void getTextZoom(final CallbackContext callbackContext) {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            public void run() {
+                final double textZoom = mMobileAccessibilityHelper.getTextZoom();
+                if (callbackContext != null) {
+                    callbackContext.success((int) textZoom);
+                }
+            }
+        });
+    }
+
+    private void setTextZoom(final double textZoom, final CallbackContext callbackContext) {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            public void run() {
+                mMobileAccessibilityHelper.setTextZoom(textZoom);
+                if (callbackContext != null) {
+                    callbackContext.success((int) mMobileAccessibilityHelper.getTextZoom());
+                }
+            }
+        });
+    }
+
+    public void setTextZoom(final double textZoom) {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            public void run() {
+                mMobileAccessibilityHelper.setTextZoom(textZoom);
+            }
+        });
+    }
 }
