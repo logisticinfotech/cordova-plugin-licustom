@@ -24,7 +24,7 @@
     id="cordova-plugin-licustom"
     version="1.0.0">
     <name>LiCustom</name>
-    <description>Cordova Device Plugin</description>
+    <description>Cordova LiCustom Plugin</description>
     <license>Apache 2.0</license>
     <keywords>cordova,licustom</keywords>
     <repo>https://github.com/logisticinfotech/cordova-plugin-licustom</repo>
@@ -43,13 +43,13 @@
         <config-file target="res/xml/config.xml" parent="/*">
             <!-- <access origin="https://ssl.gstatic.com/accessibility/javascript/android/*" /> -->
             <feature name="LiCustom">
-                <param name="android-package" value="org.apache.cordova.licustom.LiCustom"/>
+                <param name="android-package" value="com.logistic.cordova.licustom.LiCustom"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/LiCustom.java" target-dir="src/org/apache/cordova/licustom" />
-        <source-file src="src/android/AbstractLiCustomHelper.java" target-dir="src/org/apache/cordova/licustom" />
-        <source-file src="src/android/DonutLiCustomHelper.java" target-dir="src/org/apache/cordova/licustom" />
+        <source-file src="src/android/LiCustom.java" target-dir="src/com/logistic/cordova/licustom" />
+        <source-file src="src/android/helper/AbstractLiCustomHelper.java" target-dir="src/com/logistic/cordova/licustom/helper" />
+        <source-file src="src/android/helper/DonutLiCustomHelper.java" target-dir="src/com/logistic/cordova/licustom/helper" />
         <!-- <asset src="www/android" target="plugins/com.phonegap.plugin.mobile-accessibility/android" /> -->
     </platform>
 

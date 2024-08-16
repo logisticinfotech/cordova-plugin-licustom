@@ -19,7 +19,7 @@
  *
 */
 
-package org.apache.cordova.licustom;
+package com.logistic.cordova.licustom;
 
 import android.view.ViewParent;
 
