@@ -26,6 +26,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import android.util.Log;
 
+import com.logistic.cordova.licustom.helper.AbstractLiCustomHelper;
+import com.logistic.cordova.licustom.helper.DonutLiCustomHelper;
+
+
 public class LiCustom extends CordovaPlugin {
 
     private static final String TAG = "LiCustomPlugin";

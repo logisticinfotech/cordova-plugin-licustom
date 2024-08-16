@@ -19,7 +19,7 @@
  *
 */
 
-package com.logistic.cordova.licustom;
+package com.logistic.cordova.licustom.helper;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -28,6 +28,8 @@ import android.view.accessibility.AccessibilityManager;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+
+import com.logistic.cordova.licustom.LiCustom;
 
 import java.lang.IllegalAccessException;
 import java.lang.reflect.InvocationTargetException;

@@ -19,11 +19,12 @@
  *
 */
 
-package com.logistic.cordova.licustom;
+package com.logistic.cordova.licustom.helper;
 
 import android.view.ViewParent;
+import com.logistic.cordova.licustom.LiCustom;
 
-abstract class AbstractLiCustomHelper {
+public abstract class AbstractLiCustomHelper {
     LiCustom liCustom;
     ViewParent mParent;
     public abstract void initialize(LiCustom liCustom);
