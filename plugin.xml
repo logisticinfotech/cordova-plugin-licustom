@@ -54,7 +54,7 @@
             </activity>
         </config-file>
 
-        <config-file target="res/values/colors.xml" parent="resources">
+        <config-file target="res/values/colors.xml">
             <color name="scan_region_stroke">#49F549</color>
             <color name="scan_region_mask">#49F5494d</color>
         </config-file>
