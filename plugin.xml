@@ -54,12 +54,13 @@
             </activity>
         </config-file>
 
-        <config-file target="res/values/colors.xml">
+        <config-file target="res/values/colors.xml" parent="resources">
             <color name="scan_region_stroke">#49F549</color>
             <color name="scan_region_mask">#49F5494d</color>
         </config-file>
 
         <source-file src="src/android/LiCustom.java" target-dir="src/com/logistic/cordova/licustom" />
+        <source-file src="src/android/ProgrammaticCameraActivity.java" target-dir="src/com/logistic/cordova/licustom" />
         <source-file src="src/android/helper/AbstractLiCustomHelper.java" target-dir="src/com/logistic/cordova/licustom/helper" />
         <source-file src="src/android/helper/DonutLiCustomHelper.java" target-dir="src/com/logistic/cordova/licustom/helper" />
         <!-- <asset src="www/android" target="plugins/com.phonegap.plugin.mobile-accessibility/android" /> -->
