@@ -24,7 +24,10 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.util.Log;
+import android.content.Intent;
 
 import com.logistic.cordova.licustom.helper.AbstractLiCustomHelper;
 import com.logistic.cordova.licustom.helper.DonutLiCustomHelper;
@@ -33,6 +36,7 @@ import com.logistic.cordova.licustom.helper.DonutLiCustomHelper;
 public class LiCustom extends CordovaPlugin {
 
     private static final String TAG = "LiCustomPlugin";
+    private static CallbackContext barcodeScannerCallbackContext;
 
     private AbstractLiCustomHelper mLiCustomHelper;
 
@@ -81,6 +85,9 @@ public class LiCustom extends CordovaPlugin {
                     setTextZoom(textZoom, callbackContext);
                 }
             }
+        } else if (action.equals("openBarcodeScannerActivity")) {
+            JSONObject jsonObject = args.getJSONObject(0); // Get JSON object
+            openBarcodeScannerActivity(jsonObject, callbackContext);
         } else {
             return false;
         }
@@ -118,5 +125,37 @@ public class LiCustom extends CordovaPlugin {
                 mLiCustomHelper.setTextZoom(textZoom);
             }
         });
+    }
+
+    public void openBarcodeScannerActivity(final JSONObject jsonObject, final CallbackContext callbackContext) {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            public void run() {
+                try {
+                    barcodeScannerCallbackContext = callbackContext;
+                    Intent intent = new Intent(cordova.getActivity(), ProgrammaticCameraActivity.class);
+                    intent.putExtra("settings", jsonObject.toString()); // Pass as JSON string
+                    cordova.startActivityForResult(LiCustom.this, intent, 1);
+                } catch (Exception e) {
+                    callbackContext.error("Error openBarcodeScannerActivity: " + e.getMessage());
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == 1) {
+            if (resultCode == cordova.getActivity().RESULT_OK && intent != null) {
+                String barcodeResult = intent.getStringExtra("barcode_result");
+                if (barcodeScannerCallbackContext != null) {
+                    barcodeScannerCallbackContext.success(barcodeResult);
+                }
+            } else {
+                if (barcodeScannerCallbackContext != null) {
+                    barcodeScannerCallbackContext.error("Barcode scanning cancelled or failed.");
+                }
+            }
+            barcodeScannerCallbackContext = null;
+        }
     }
 }

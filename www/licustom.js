@@ -34,6 +34,11 @@ var LiCustom = {
    */
   setTextZoom: function(textZoom, callback) {
     exec(callback, null, PLUGIN_NAME, "setTextZoom", [textZoom]);
+  },
+
+  // open Dynamsoft Capture Vision openBarcodeScannerActivity
+  openBarcodeScannerActivity: function(settings, callback, error) {
+    exec(callback, error, PLUGIN_NAME, "openBarcodeScannerActivity", [settings]);
   }
 };
 

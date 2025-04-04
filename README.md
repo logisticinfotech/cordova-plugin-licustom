@@ -24,6 +24,7 @@ The `licustom` object, exposed by `window.licustom`, provides methods for determ
 
 - licustom.getTextZoom
 - licustom.setTextZoom
+- licustom.openBarcodeScannerActivity
 
 --------------------------------------------------------
 #### licustom.getTextZoom(callback)
@@ -72,6 +73,36 @@ Makes an asynchronous call to native `licustom` to set the current text zoom per
 
 - Android
 - iOS
+
+--------------------------------------------------------
+#### licustom.openBarcodeScannerActivity(callback)
+
+Makes an asynchronous call to native `licustom` to return the current text zoom percent value for the WebView.
+
+##### Parameters
+
+- __callback__ (Function) A callback method to receive the text zoom percent value asynchronously from the native `licustom` plugin.
+
+##### Usage
+
+```javascript
+    const dynamsoft_reader_settings = {
+        "license": "YOUR_DYNAMSOFT_LICENCE_KEY",
+        "stop_scanner_btn_text": "Stop Scanner",
+        "expectedBarcodesCount": 1,
+        "barcodeFormatIds": Dynamsoft.EnumBarcodeFormat.BF_UPC_A
+    }
+    function openBarcodeScannerActivity(dynamsoft_reader_settings, (results) => {
+        console.log('barcode => ' + results)
+    }, (error) => {
+        console.log('barcode scanning error => ' + error)
+    });
+```
+##### Supported Platforms
+
+- Android
+
+--------------------------------------------------------
 
 ----------
 ### Events

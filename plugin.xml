@@ -47,6 +47,13 @@
             </feature>
         </config-file>
 
+        <config-file target="AndroidManifest.xml" parent="application">
+            <activity android:name="com.logistic.cordova.licustom.ProgrammaticCameraActivity"
+                android:exported="true"
+                android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+            </activity>
+        </config-file>
+
         <source-file src="src/android/LiCustom.java" target-dir="src/com/logistic/cordova/licustom" />
         <source-file src="src/android/helper/AbstractLiCustomHelper.java" target-dir="src/com/logistic/cordova/licustom/helper" />
         <source-file src="src/android/helper/DonutLiCustomHelper.java" target-dir="src/com/logistic/cordova/licustom/helper" />
