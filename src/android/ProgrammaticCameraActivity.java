@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.util.Log;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ import com.dynamsoft.dce.CameraView;
 import com.dynamsoft.dce.Feedback;
 import com.dynamsoft.dce.utils.PermissionUtil;
 import com.dynamsoft.license.LicenseManager;
+import com.dynamsoft.license.LicenseVerificationListener;
 import com.dynamsoft.utility.MultiFrameResultCrossFilter;
 
 import org.json.JSONException;
@@ -65,7 +67,7 @@ public class ProgrammaticCameraActivity extends AppCompatActivity {
         setContentView(rootLayout);
 
         // Initialize the license
-        // initLicence();
+        initLicence();
 
         // Request camera permission
         PermissionUtil.requestCameraPermission(this);
@@ -210,10 +212,15 @@ public class ProgrammaticCameraActivity extends AppCompatActivity {
           }
         }
 
-        LicenseManager.initLicense(license, this, (isSuccess, error) -> {
-            if (!isSuccess) {
-                error.printStackTrace();
+        LicenseManager.initLicense(license, this, new LicenseVerificationListener() {
+          @Override
+          public void onLicenseVerified(boolean isSuccess, Exception error) {
+            if(!isSuccess){
+              error.printStackTrace();
+            } else {
+              Log.i("BARCODE", "Init License successful.");
             }
+          }
         });
     }
 

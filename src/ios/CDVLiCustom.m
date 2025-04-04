@@ -21,7 +21,7 @@
 
 #import <Cordova/CDVAvailability.h>
 
-@interface CDVMobileAccessibility ()
+@interface CDVLiCustom ()
     // add any property overrides
     -(double) mGetTextZoom;
     -(void) mSetTextZoom:(double)zoom;
