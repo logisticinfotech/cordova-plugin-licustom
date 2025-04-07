@@ -29,6 +29,10 @@
 
 @implementation CDVLiCustom
 
+@synthesize mFontScale;
+ 
+#define iOS7Delta (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 ) ? 20 : 0 )
+
 - (void)pluginInitialize {
 }
 

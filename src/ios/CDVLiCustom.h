@@ -22,6 +22,8 @@
 @interface CDVLiCustom : CDVPlugin
 {}
 
+@property double mFontScale;
+
 // The handler for the 'echo' action
 - (void) echo:(CDVInvokedUrlCommand *)command;
 - (void) getTextZoom:(CDVInvokedUrlCommand*)command;
