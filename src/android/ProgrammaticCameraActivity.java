@@ -4,8 +4,8 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.util.Log;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -67,7 +67,7 @@ public class ProgrammaticCameraActivity extends AppCompatActivity {
         setContentView(rootLayout);
 
         // Initialize the license
-        initLicence();
+         initLicence();
 
         // Request camera permission
         PermissionUtil.requestCameraPermission(this);
@@ -97,8 +97,8 @@ public class ProgrammaticCameraActivity extends AppCompatActivity {
         setRegion();
 
         // visible region mask and set color of scanner laser and mask
-        mCameraView.setScanRegionMaskVisible(true);
-        mCameraView.setScanLaserVisible(true);
+        isScanRegionVisible();
+        isScanLaserVisible();
         mCameraView.setScanRegionMaskStyle(R.color.scan_region_stroke, R.color.scan_region_mask, 1f);
 
         // Configure result filter
@@ -242,6 +242,30 @@ public class ProgrammaticCameraActivity extends AppCompatActivity {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void isScanRegionVisible() {
+      if (!settingsJsonObject.isNull("is_scan_region_visible")) {
+        try {
+          if (settingsJsonObject.getBoolean("is_scan_region_visible")) {
+            mCameraView.setScanRegionMaskVisible(true);
+          }
+        } catch (JSONException e) {
+          throw new RuntimeException(e);
+        }
+      }
+    }
+
+    private void isScanLaserVisible() {
+      if (!settingsJsonObject.isNull("is_scan_laser_visible")) {
+        try {
+          if (settingsJsonObject.getBoolean("is_scan_laser_visible")) {
+            mCameraView.setScanLaserVisible(true);
+          }
+        } catch (JSONException e) {
+          throw new RuntimeException(e);
+        }
+      }
     }
 
     private void setRegion() {
