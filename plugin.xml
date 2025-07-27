@@ -47,12 +47,12 @@
             </feature>
         </config-file>
 
-        <config-file target="AndroidManifest.xml" parent="application">
+        <!-- <config-file target="AndroidManifest.xml" parent="application">
             <activity android:name="com.logistic.cordova.licustom.ProgrammaticCameraActivity"
                 android:exported="true"
-                android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+                android:theme="@style/Theme.AppCompat.NoActionBar">
             </activity>
-        </config-file>
+        </config-file> -->
 
         <config-file target="res/values/colors.xml" parent="resources">
             <color name="scan_region_stroke">#49F549</color>

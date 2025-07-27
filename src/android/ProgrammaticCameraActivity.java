@@ -129,12 +129,8 @@ public class ProgrammaticCameraActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         // Start video barcode reading
-        try {
-            // Open the camera
-            mCamera.open();
-        } catch (CameraEnhancerException e) {
-            e.printStackTrace();
-        }
+        // Open the camera
+        mCamera.open();
         // Start capturing
         mRouter.startCapturing(EnumPresetTemplate.PT_READ_SINGLE_BARCODE, new CompletionListener() {
             @Override
@@ -154,11 +150,7 @@ public class ProgrammaticCameraActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         // Stop video barcode reading
-        try {
-            mCamera.close();
-        } catch (CameraEnhancerException e) {
-            e.printStackTrace();
-        }
+        mCamera.close();
         mRouter.stopCapturing();
         super.onPause();
     }
